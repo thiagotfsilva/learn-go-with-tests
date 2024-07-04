@@ -18,5 +18,14 @@ func SomaTudo(numerosParaSomar ...[]int) []int {
 }
 
 func SomaTodoOResto(numerosParaSomar ...[]int) []int {
-	return []int{}
+	var somas []int
+	for _, numeros := range numerosParaSomar {
+		if len(numeros) == 0 {
+			somas = append(somas, 0)
+		} else {
+			final := numeros[1:] // pegue da posição 1 até o final
+			somas = append(somas, Soma(final))
+		}
+	}
+	return somas
 }
