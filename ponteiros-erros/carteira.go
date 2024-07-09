@@ -1,6 +1,11 @@
 package ponteiroserros
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+)
+
+var ErroSaldoInsuficiente = errors.New("não é possível retirar: saldo insuficiente")
 
 type Stringer interface {
 	String() string
@@ -24,6 +29,12 @@ func (c *Carteira) Saldo() Bitcoin {
 	return c.saldo
 }
 
-func (c *Carteira) Retirar(quantidade Bitcoin)  {
+func (c *Carteira) Retirar(quantidade Bitcoin) error {
+	if quantidade > c.saldo {
+		return ErroSaldoInsuficiente
+	}
+
 	c.saldo -= quantidade
+
+	return nil
 }
