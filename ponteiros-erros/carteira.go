@@ -23,3 +23,7 @@ func (c *Carteira) Depositar(quantidade Bitcoin) {
 func (c *Carteira) Saldo() Bitcoin {
 	return c.saldo
 }
+
+func (c *Carteira) Retirar(quantidade Bitcoin)  {
+	c.saldo -= quantidade
+}
